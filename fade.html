@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>mySynth</title>
+    <script src="js/BufferLoader.js"></script>
+    <script src="js/Fade.js"></script>
+</head>
+<body>
+    <div>
+        <button id="bg-button">Play/pause</button>
+        atmospheric
+        <input id="bg" type="range" value="0" min="0" max="100" style="width: 400px">
+        boss
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                context = new webkitAudioContext();
+            } catch (e) {
+                alert("Web Audio API is not supported in this browser");
+            }
+            var background = new BackgroundIntensity(document.querySelector('#bg-button'), document.querySelector('#bg'), context);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>mySynth</title>
+</head>
+<body>
+    <audio id="bgmusicA">
+        <source src="audio/instrumental.mp3" />
+    </audio>
+    <audio id="bgmusicB">
+        <source src="audio/Guitar.mp3" />
+    </audio>
+    <script>
+        var musicA = document.getElementById('bgmusicA');
+        var musicB = document.getElementById('bgmusicB');
+        musicA.addEventListener('ended', function(){
+          this.currentTime = 0;
+            this.play();
+          /*this.pause();
+          var playB = function(){
+            musicB.play();
+          }
+          //	make it wait 15 seconds before playing again
+          //this.play();*/
+        }, false);
+            
+        musicB.addEventListener('ended', function(){
+          this.currentTime = 0;
+            this.play();
+          /*this.pause();	
+          var playA = function(){
+            musicA.play();
+          }
+          playA();*/
+        }, false);
+        
+        //	okay so there's a bit of code redundancy, I admit it
+        musicA.play();	
+        //musicB.play();	
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <title>mySynth</title>
     <script>
-        var SOUNDS = ['audio/Bass.mp3', 'audio/Drum.mp3', 'audio/Crunch.mp3', 'audio/Guitar.mp3', 'audio/Pizzicato.mp3'];
+        var SOUNDS = ['audio/instrumental.mp3', 'audio/acapella.mp3'];
         var myAudioContext, myAudioAnalyser,
             myBuffers = {}, mySource,
             myNodes = {},   mySpectrum,
@@ -39,6 +39,7 @@
             var request = event.target;
             var buffer = myAudioContext.createBuffer(request.response, false);
             myBuffers[request._soundName] = buffer;
+            console.log('bufferSound', request._soundName);
         }
  
         function selectRandomBuffer() {
@@ -73,8 +74,9 @@
         }
         
         function playBoth() {
-            playSound(selectRandomBuffer());
-            playSound(selectRandomBuffer());
+            console.log('playBoth');
+            playSound('audio/instrumental.mp3');
+            playSound('audio/acapella.mp3');
         }
  
         function playSound(name) {
