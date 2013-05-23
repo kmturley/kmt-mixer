@@ -10,9 +10,9 @@
     var BUFFERS = {};
     var context = null;
     var BUFFERS_TO_LOAD = {
-      kick: 'audio/instrumental.mp3',
-      snare: 'audio/acapella.mp3',
-      hihat: 'audio/hihat.wav'
+        kick: 'audio/instrumental.mp3',
+        snare: 'audio/acapella.mp3',
+        hihat: 'audio/hihat.wav'
     };
     
     function loadBuffers() {
@@ -28,6 +28,7 @@
           var buffer = bufferList[i];
           var name = names[i];
           BUFFERS[name] = buffer;
+            console.log('BufferLoader', name);
         }
       });
       bufferLoader.load();
