@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <title>mySynth</title>
+    <script src="js/BufferLoader.js"></script>
+</head>
+<body>
+    <input type="button" onclick="RhythmSample.play();" value="Play"/>
+    <script>
+    var BUFFERS = {};
+    var context = null;
+    var BUFFERS_TO_LOAD = {
+      kick: 'audio/instrumental.mp3',
+      snare: 'audio/acapella.mp3',
+      hihat: 'audio/hihat.wav'
+    };
+    
+    function loadBuffers() {
+      var names = [];
+      var paths = [];
+      for (var name in BUFFERS_TO_LOAD) {
+        var path = BUFFERS_TO_LOAD[name];
+        names.push(name);
+        paths.push(path);
+      }
+      bufferLoader = new BufferLoader(context, paths, function(bufferList) {
+        for (var i = 0; i < bufferList.length; i++) {
+          var buffer = bufferList[i];
+          var name = names[i];
+          BUFFERS[name] = buffer;
+        }
+      });
+      bufferLoader.load();
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        context = new AudioContext();
+      } catch (e) {
+        alert("Web Audio API is not supported in this browser");
+      }
+      loadBuffers();
+    });
+        
+    var RhythmSample = {};
+        RhythmSample.play = function() {
+          function playSound(buffer, time) {
+            var source = context.createBufferSource();
+            source.buffer = buffer;
+            source.connect(context.destination);
+            if (!source.start) source.start = source.noteOn;
+            source.start(time);
+          }
+          var kick = BUFFERS.kick;
+          var snare = BUFFERS.snare;
+          var hihat = BUFFERS.hihat;
+          var startTime = context.currentTime + 0.100;
+          var tempo = 90;
+          var eighthNoteTime = (120 / tempo);
+            
+            playSound(snare, startTime + 0 * 8 * eighthNoteTime);
+            
+          for (var bar = 0; bar < 8; bar++) {
+            var time = startTime + bar * 8 * eighthNoteTime;
+            playSound(kick, time);
+            
+            //playSound(snare, time + 2 * eighthNoteTime);
+            //playSound(snare, time + 6 * eighthNoteTime);
+            for (var i = 0; i < 8; ++i) {
+              playSound(hihat, time + i * eighthNoteTime);
+            }
+          }
+        };
+    </script>
+</body>
+</html>

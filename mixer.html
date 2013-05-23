@@ -83,11 +83,16 @@
             // create a new AudioBufferSourceNode
             var source = myAudioContext.createBufferSource();
             source.buffer = myBuffers[name];
-            source.loop = true;
+            //source.loop = true;
             source = routeSound(source);
             // play right now (0 seconds from now)
             // can also pass myAudioContext.currentTime
+            console.log(source.buffer.duration);
+            
             source.noteOn(0);
+            
+            source.noteOn(source.buffer.duration);
+            
             mySpectrum = setInterval(drawSpectrum, 30);
             mySource = source;
         }
