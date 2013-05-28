@@ -1,17 +1,44 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>KMT Mixer</title>
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <link href="css/base/reset.css" rel="stylesheet" />
+    <link href="css/base/layout.css" rel="stylesheet" />
+    <link href="css/base/themes.css" rel="stylesheet" />
+    <link href="css/views/display.css" rel="stylesheet" />
 </head>
-<body>
-    <p><a href="#" class="play" onclick="mixer.play()">play</a></p>
-    <p><a href="#" class="stop" onclick="mixer.stop()">stop</a></p>
-    <div id="mixer1"></div>
+<body class="default dark flow-m">
+    <div class="row display" id="mixer1">
+        <div class="col">
+            <div class="hd bg1">
+                <h1></h1>
+                <p></p>
+            </div>
+            <ul class="list"></ul>
+        </div>
+        <div class="col controls">
+            <div class="hd bg1">
+                <h1><a href="#" class="c3" onclick="mixer.play()">&#9654;</a> <a href="#" class="c3" onclick="mixer.stop()">&#9632;</a></h1>
+                <p>&nbsp;</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="hd bg1">
+                <h1></h1>
+                <p></p>
+            </div>
+            <ul class="list"></ul>
+        </div>
+    </div>
+    <script src="js/Audio.js"></script>
     <script src="js/Mixer.js"></script>
+    <script src="js/Files.js"></script>
     <script>
-        var mixer = new Mixer('mixer1', { files: ['audio/acapella.mp3', 'audio/kingston.wav', 'audio/al.wav', 'audio/hook.wav', 'audio/amy.wav', 'audio/arts.wav', 'audio/atlanta.wav', 'audio/quantic.wav'] });
+        var mixer = new Mixer('mixer1', { tracks1: acapellas, tracks2: instrumentals });
     </script>
 </body>
 </html>

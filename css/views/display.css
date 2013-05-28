@@ -1,0 +1,22 @@
+/*
+    Section
+    css styles specific to this module only
+*/
+
+.display .hd {
+    padding: 15px 20px 0 20px;
+}
+
+.display .list {
+    list-style: none;
+    padding: 0;
+}
+
+.display .item {
+    display: block;
+    padding: 10px 20px 15px 20px;
+}
+
+.display .controls {
+    text-align: center;
+}
